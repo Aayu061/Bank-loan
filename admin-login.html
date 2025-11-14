@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+  <title>Nexa Bank — Office Login</title>
+  <!-- shared head -->
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Nexa Bank — Fast & Easy Loans. Low Interest • No Hidden Fees • 100% Secure." />
+  <link rel="icon" href="./N.png" />
+  <meta property="og:title" content="Nexa Bank — Next-step finance" />
+  <meta property="og:description" content="Get approved in minutes with Nexa Bank’s fast & secure loans." />
+  <meta property="og:image" content="img/og-card.png" />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#7c3aed" />
+  <meta name="api-base" content="https://nexa-bank.onrender.com">
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{brand:{DEFAULT:'#7c3aed',dark:'#6d28d9'},slatebg:'#0b1220'}}}}</script>
+</head>
+<body class="min-h-screen text-slate-100">
+
+  <header class="nav-blur sticky top-0 z-50">
+    <div class="container-max mx-auto px-4 h-14 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 hover:opacity-80 transition">
+        <img src="./Nexa Bank.png" alt="Nexa Bank Logo" class="site-logo object-cover rounded" />
+      </a>
+      <nav class="hidden sm:flex items-center gap-6 text-sm" aria-label="Main">
+        <a class="nav-link hover:text-brand transition" data-page="products" href="products.html">Loan Products</a>
+        <a class="nav-link hover:text-brand transition" data-page="calculator" href="calculator.html">EMI Calculator</a>
+        <a class="nav-link hover:text-brand transition" data-page="faq" href="faq.html">FAQ</a>
+        <a class="px-4 py-2 rounded-full bg-brand hover:bg-brand-dark font-semibold transition" href="admin-login.html">Office Login</a>
+      </nav>
+      <button id="mobileMenuBtn" class="sm:hidden text-2xl" aria-label="Open menu">☰</button>
+    </div>
+    <nav id="mobileMenu" class="hidden sm:hidden border-t border-white/10 bg-slate-900/90" aria-label="Mobile">
+      <div class="container-max mx-auto px-4 py-3 grid gap-2 text-sm">
+        <a class="nav-link hover:text-brand transition block py-2" data-page="products" href="products.html">Loan Products</a>
+        <a class="nav-link hover:text-brand transition block py-2" data-page="calculator" href="calculator.html">EMI Calculator</a>
+        <a class="nav-link hover:text-brand transition block py-2" data-page="faq" href="faq.html">FAQ</a>
+        <a class="px-3 py-2.5 rounded-lg bg-brand hover:bg-brand-dark font-semibold text-center transition" href="admin-login.html">Office Login</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Toast -->
+  <div id="toast" class="fixed top-4 right-4 z-50 hidden">
+    <div class="rounded-xl bg-slate-900/95 text-slate-100 px-4 py-3 shadow-soft border border-white/10">
+      <span id="toastMsg">Message</span>
+    </div>
+  </div>
+
+  <main class="container-max mx-auto px-4 py-10">
+    <div class="mb-8 flex items-center gap-3">
+      <a href="index.html" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-slate-800/50 hover:bg-slate-700/50 border border-white/10 hover:border-brand/50 transition font-semibold">
+        ← Back
+      </a>
+    </div>
+    <div class="grid lg:grid-cols-2 gap-8 items-center">
+      <section>
+        <h1 class="mt-2 text-4xl sm:text-5xl font-extrabold leading-tight">Office Login</h1>
+        <p class="mt-4 text-slate-300">Authorized staff only. Use your work credentials.</p>
+        <p class="mt-2 text-sm text-slate-400">If you've forgotten your password, contact IT or use the internal reset workflow. This interface is for bank employees and officers — external users should use the customer login.</p>
+      </section>
+
+      <section class="glass rounded-2xl p-6 border border-white/10 shadow-soft">
+        <h2 class="text-lg font-semibold bg-gradient-to-r from-brand to-indigo-600 px-4 py-3 rounded-xl mb-4">Admin / Officer Sign In</h2>
+        <form class="space-y-4" action="#" method="post">
+          <label class="block">
+            <span class="text-sm">Work Email</span>
+            <input id="adminEmail" type="email" required autocomplete="email" placeholder="admin@nexa.bank"
+                   class="mt-1 w-full rounded-lg bg-slate-800 border border-white/10 px-3 py-2 outline-none focus:ring-2 focus:ring-brand" />
+          </label>
+          <label class="block">
+            <span class="text-sm">Password</span>
+            <div class="relative">
+              <input id="adminPassword" type="password" required autocomplete="current-password" placeholder="••••••••"
+                     class="mt-1 w-full rounded-lg bg-slate-800 border border-white/10 px-3 py-2 pr-10 outline-none focus:ring-2 focus:ring-brand" />
+              <button type="button" id="adminTogglePass"
+                      class="absolute inset-y-0 right-2 flex items-center text-slate-400 hover:text-slate-200"
+                      aria-label="Show password">👁️</button>
+            </div>
+          </label>
+          <button class="w-full py-2.5 rounded-xl bg-gradient-to-r from-brand to-indigo-600 font-semibold" type="button">Login</button>
+          <p class="text-xs text-slate-400 text-center">Nexa internal systems — do not share credentials.</p>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer class="container-max mx-auto px-4 py-8 text-xs text-slate-400">© Nexa Bank — Next-step finance.</footer>
+
+  <script src="./UI.nomodule.js"></script>
+  <!-- Success dialog markup -->
+  <div id="successDialogOverlay" class="success-dialog-overlay hidden" aria-hidden="true">
+    <div class="success-dialog">
+      <div class="icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" stroke="#34d399"/></svg>
+      </div>
+      <h3 class="success-title">Success</h3>
+      <p class="success-sub">Signed in</p>
+      <div class="actions">
+        <button class="btn bg-brand text-white" onclick="document.getElementById('successDialogOverlay').classList.remove('open')">Continue</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    if(window.wireMobileNav) wireMobileNav('mobileMenuBtn','mobileMenu');
+    if(window.wirePasswordToggle) wirePasswordToggle('adminPassword','adminTogglePass');
+    // Wire admin login to show success dialog
+    (function(){
+      const btn = document.querySelector('form button[type="button"]');
+      const email = document.getElementById('adminEmail');
+      const pass = document.getElementById('adminPassword');
+      if(!btn) return;
+      btn.addEventListener('click', async ()=>{
+        try{
+          await window.api.login({ email: email.value.trim(), password: pass.value });
+          if(window.showSuccessDialog) showSuccessDialog('Login successful', 'Welcome back', 'admin.html', 1300);
+          else { showToast('Login successful', 1500); setTimeout(()=> location.href='admin.html', 900); }
+        }catch(err){ showToast(err.message || 'Login failed', 2500); }
+      });
+    })();
+  </script>
+</body>
+</html>

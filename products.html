@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+  <title>Nexa Bank — Loan Products</title>
+  <!-- shared head -->
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Nexa Bank — Fast & Easy Loans. Low Interest • No Hidden Fees • 100% Secure." />
+  <link rel="icon" href="./N.png" />
+  <meta property="og:title" content="Nexa Bank — Next-step finance" />
+  <meta property="og:description" content="Get approved in minutes with Nexa Bank’s fast & secure loans." />
+  <meta property="og:image" content="img/og-card.png" />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#7c3aed" />
+  <meta name="api-base" content="https://nexa-bank.onrender.com">
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{brand:{DEFAULT:'#7c3aed',dark:'#6d28d9'},slatebg:'#0b1220'}}}}</script>
+</head>
+<body class="min-h-screen text-slate-100">
+
+  <header class="nav-blur sticky top-0 z-50">
+    <div class="container-max mx-auto px-4 h-14 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 hover:opacity-80 transition">
+        <img src="./Nexa Bank.png" alt="Nexa Bank Logo" class="site-logo object-cover rounded" />
+      </a>
+      <nav class="hidden sm:flex items-center gap-6 text-sm" aria-label="Main">
+        <a class="nav-link hover:text-brand transition" data-page="products" href="products.html">Loan Products</a>
+        <a class="nav-link hover:text-brand transition" data-page="calculator" href="calculator.html">EMI Calculator</a>
+        <a class="nav-link hover:text-brand transition" data-page="faq" href="faq.html">FAQ</a>
+        <a class="px-4 py-2 rounded-full bg-brand hover:bg-brand-dark font-semibold transition" href="admin-login.html">Office Login</a>
+      </nav>
+      <button id="mobileMenuBtn" class="sm:hidden text-2xl" aria-label="Open menu">☰</button>
+    </div>
+    <nav id="mobileMenu" class="hidden sm:hidden border-t border-white/10 bg-slate-900/90" aria-label="Mobile">
+      <div class="container-max mx-auto px-4 py-3 grid gap-2 text-sm">
+        <a class="nav-link hover:text-brand transition block py-2" data-page="products" href="products.html">Loan Products</a>
+        <a class="nav-link hover:text-brand transition block py-2" data-page="calculator" href="calculator.html">EMI Calculator</a>
+        <a class="nav-link hover:text-brand transition block py-2" data-page="faq" href="faq.html">FAQ</a>
+        <a class="px-3 py-2.5 rounded-lg bg-brand hover:bg-brand-dark font-semibold text-center transition" href="admin-login.html">Office Login</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container-max mx-auto px-4 py-12 md:py-16 space-y-16">
+    <div class="mb-8 flex items-center gap-3">
+      <a href="index.html" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-slate-800/50 hover:bg-slate-700/50 border border-white/10 hover:border-brand/50 transition font-semibold">
+        ← Back
+      </a>
+    </div>
+    <div class="animate-fade-in">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-3">Loan Products</h1>
+  <p class="text-lg text-slate-400 max-w-2xl">Discover our range of flexible loan solutions tailored to your financial needs</p>
+  <p class="mt-3 text-sm text-slate-300 max-w-3xl">From quick personal loans to long-term home financing, Nexa Bank provides transparent pricing, flexible tenures and a fast digital-first application flow. Compare products below and choose what suits your life stage.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 animate-stagger">
+      <div class="group relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-brand/20 to-indigo-600/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition duration-500"></div>
+        <div class="relative rounded-3xl bg-gradient-to-br from-slate-800/50 to-slate-900/50 p-8 shadow-soft card-hover border border-white/10 hover:border-brand/50 transition overflow-hidden">
+          <div class="absolute top-0 right-0 text-6xl opacity-10 group-hover:opacity-20 transition">💰</div>
+          <div class="text-5xl mb-4 group-hover:scale-110 transition origin-left">💰</div>
+          <h3 class="font-bold text-2xl mb-2">Personal Loan</h3>
+          <p class="text-sm text-slate-400 mb-6">Quick cash for personal needs</p>
+          <div class="space-y-3 mb-6">
+            <p class="text-sm text-slate-300"><span class="font-semibold">Amount:</span> ₹50K – ₹10L</p>
+            <p class="text-sm text-slate-300"><span class="font-semibold">APR:</span> 10.99–16.99%</p>
+            <p class="text-sm text-slate-300"><span class="font-semibold">Tenure:</span> 12–60 months</p>
+          </div>
+          <button class="w-full px-4 py-3 rounded-xl bg-gradient-to-r from-brand to-indigo-600 hover:from-brand-dark hover:to-indigo-700 font-bold transition transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl cibil-check-btn">Apply Now</button>
+        </div>
+      </div>
+
+      <div class="group relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-brand/20 to-indigo-600/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition duration-500"></div>
+        <div class="relative rounded-3xl bg-gradient-to-br from-slate-800/50 to-slate-900/50 p-8 shadow-soft card-hover border border-white/10 hover:border-brand/50 transition overflow-hidden">
+          <div class="absolute top-0 right-0 text-6xl opacity-10 group-hover:opacity-20 transition">🏠</div>
+          <div class="text-5xl mb-4 group-hover:scale-110 transition origin-left">🏠</div>
+          <h3 class="font-bold text-2xl mb-2">Home Loan</h3>
+          <p class="text-sm text-slate-400 mb-6">Fulfill your dream of homeownership</p>
+          <div class="space-y-3 mb-6">
+            <p class="text-sm text-slate-300"><span class="font-semibold">Amount:</span> ₹5L – ₹2Cr</p>
+            <p class="text-sm text-slate-300"><span class="font-semibold">APR:</span> 8.25–10.75%</p>
+            <p class="text-sm text-slate-300"><span class="font-semibold">Tenure:</span> 60–360 months</p>
+          </div>
+          <button class="w-full px-4 py-3 rounded-xl bg-gradient-to-r from-brand to-indigo-600 hover:from-brand-dark hover:to-indigo-700 font-bold transition transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl cibil-check-btn">Apply Now</button>
+        </div>
+      </div>
+
+      <div class="group relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-brand/20 to-indigo-600/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition duration-500"></div>
+        <div class="relative rounded-3xl bg-gradient-to-br from-slate-800/50 to-slate-900/50 p-8 shadow-soft card-hover border border-white/10 hover:border-brand/50 transition overflow-hidden">
+          <div class="absolute top-0 right-0 text-6xl opacity-10 group-hover:opacity-20 transition">🎓</div>
+          <div class="text-5xl mb-4 group-hover:scale-110 transition origin-left">🎓</div>
+          <h3 class="font-bold text-2xl mb-2">Education Loan</h3>
+          <p class="text-sm text-slate-400 mb-6">Invest in your future and career</p>
+          <div class="space-y-3 mb-6">
+            <p class="text-sm text-slate-300"><span class="font-semibold">Amount:</span> ₹1L – ₹40L</p>
+            <p class="text-sm text-slate-300"><span class="font-semibold">APR:</span> 9.75–13.50%</p>
+            <p class="text-sm text-slate-300"><span class="font-semibold">Tenure:</span> 12–84 months</p>
+          </div>
+          <button class="w-full px-4 py-3 rounded-xl bg-gradient-to-r from-brand to-indigo-600 hover:from-brand-dark hover:to-indigo-700 font-bold transition transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl cibil-check-btn">Apply Now</button>
+        </div>
+      </div>
+
+      <div class="group relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-brand/20 to-indigo-600/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition duration-500"></div>
+        <div class="relative rounded-3xl bg-gradient-to-br from-slate-800/50 to-slate-900/50 p-6 md:p-8 shadow-soft card-hover border border-white/10 hover:border-brand/50 transition overflow-hidden">
+          <div class="absolute top-0 right-0 text-6xl opacity-10 group-hover:opacity-20 transition">💼</div>
+          <div class="text-5xl mb-4 group-hover:scale-110 transition origin-left">💼</div>
+          <h3 class="font-bold text-xl md:text-2xl mb-2">Business Loan</h3>
+          <p class="text-xs md:text-sm text-slate-400 mb-6">Grow your business with quick funding</p>
+          <div class="space-y-2 md:space-y-3 mb-6">
+            <p class="text-xs md:text-sm text-slate-300"><span class="font-semibold">Amount:</span> ₹1L – ₹1Cr</p>
+            <p class="text-xs md:text-sm text-slate-300"><span class="font-semibold">APR:</span> 12.50–18.00%</p>
+            <p class="text-xs md:text-sm text-slate-300"><span class="font-semibold">Tenure:</span> 12–72 months</p>
+          </div>
+          <button class="w-full px-4 py-3 rounded-xl bg-gradient-to-r from-brand to-indigo-600 hover:from-brand-dark hover:to-indigo-700 font-bold transition transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl text-sm md:text-base cibil-check-btn">Apply Now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="glass rounded-3xl p-6 md:p-8 lg:p-10 border border-white/10 shadow-soft animate-fade-in">
+      <h2 class="text-2xl md:text-3xl font-bold mb-6 md:mb-8">Comparison Table</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-xs md:text-base">
+          <thead>
+            <tr class="border-b-2 border-brand/30">
+              <th class="text-left py-3 md:py-4 px-2 md:px-4 font-bold text-slate-200">Product</th>
+              <th class="text-left py-3 md:py-4 px-2 md:px-4 font-bold text-slate-200">Min–Max</th>
+              <th class="text-left py-3 md:py-4 px-2 md:px-4 font-bold text-slate-200">Rate</th>
+              <th class="text-left py-3 md:py-4 px-2 md:px-4 font-bold text-slate-200">Tenure</th>
+              <!-- Action column removed per request -->
+            </tr>
+          </thead>
+          <tbody class="text-slate-300">
+            <tr class="border-b border-white/5 hover:bg-white/5 transition group cursor-pointer">
+              <td class="py-3 md:py-4 px-2 md:px-4 font-semibold">💰 Personal</td>
+              <td class="py-3 md:py-4 px-2 md:px-4">₹50K–₹10L</td>
+              <td class="py-3 md:py-4 px-2 md:px-4">10.99–16.99%</td>
+              <td class="py-3 md:py-4 px-2 md:px-4">12–60m</td>
+              
+            </tr>
+            <tr class="border-b border-white/5 hover:bg-white/5 transition group cursor-pointer">
+              <td class="py-3 md:py-4 px-2 md:px-4 font-semibold">🏠 Home</td>
+              <td class="py-3 md:py-4 px-2 md:px-4">₹5L–₹2Cr</td>
+              <td class="py-3 md:py-4 px-2 md:px-4">8.25–10.75%</td>
+              <td class="py-3 md:py-4 px-2 md:px-4">60–360m</td>
+              
+            </tr>
+            <tr class="border-b border-white/5 hover:bg-white/5 transition group cursor-pointer">
+              <td class="py-3 md:py-4 px-2 md:px-4 font-semibold">🎓 Education</td>
+              <td class="py-3 md:py-4 px-2 md:px-4">₹1L–₹40L</td>
+              <td class="py-3 md:py-4 px-2 md:px-4">9.75–13.50%</td>
+              <td class="py-3 md:py-4 px-2 md:px-4">12–84m</td>
+              
+            </tr>
+            <tr class="hover:bg-white/5 transition group cursor-pointer">
+              <td class="py-3 md:py-4 px-2 md:px-4 font-semibold">💼 Business</td>
+              <td class="py-3 md:py-4 px-2 md:px-4">₹1L–₹1Cr</td>
+              <td class="py-3 md:py-4 px-2 md:px-4">12.50–18%</td>
+              <td class="py-3 md:py-4 px-2 md:px-4">12–72m</td>
+              
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- CIBIL Score Checker Modal -->
+  <div id="cibilModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center z-50 p-4">
+    <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-white/10 shadow-2xl max-w-md w-full animate-scale-in">
+      <div class="p-6 md:p-8">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-2xl md:text-3xl font-bold text-white">Check Your CIBIL Score</h2>
+          <button id="closeCibilModal" class="text-3xl text-slate-400 hover:text-white transition">✕</button>
+        </div>
+
+        <form id="cibilForm" class="space-y-5">
+          <label class="block">
+            <span class="text-sm font-semibold text-slate-200 mb-2 block">📱 Mobile Number</span>
+            <input type="tel" id="mobileInput" placeholder="98765 43210" maxlength="10"
+                   class="w-full rounded-lg bg-slate-700/50 border border-white/10 px-4 py-3 text-white placeholder-slate-500 focus:ring-2 focus:ring-brand outline-none transition" />
+            <small class="text-xs text-slate-400 mt-1 block">10-digit mobile number</small>
+          </label>
+
+          <label class="block">
+            <span class="text-sm font-semibold text-slate-200 mb-2 block">🔐 PAN Number</span>
+            <input type="text" id="panInput" placeholder="ABCDE1234F" maxlength="10"
+                   class="w-full rounded-lg bg-slate-700/50 border border-white/10 px-4 py-3 text-white placeholder-slate-500 focus:ring-2 focus:ring-brand outline-none transition uppercase" />
+            <small class="text-xs text-slate-400 mt-1 block">Enter PAN (10 characters)</small>
+          </label>
+
+          <button type="submit" class="w-full py-3 rounded-lg bg-gradient-to-r from-brand to-indigo-600 hover:from-brand-dark hover:to-indigo-700 font-bold text-white transition transform hover:scale-105 active:scale-95">
+            Check Score
+          </button>
+        </form>
+
+        <div id="cibilResult" class="hidden mt-6 p-4 rounded-lg bg-white/5 border border-white/10">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-4xl" id="scoreIcon">📊</span>
+            <div>
+              <p class="text-sm text-slate-400">Your CIBIL Score</p>
+              <p class="text-3xl font-bold text-brand" id="scoreValue">750</p>
+            </div>
+          </div>
+          <p id="eligibilityStatus" class="text-sm text-slate-300 mb-4"></p>
+          <a href="login.html" class="block text-center py-2 rounded-lg bg-brand text-white font-semibold hover:bg-brand-dark transition">
+            Proceed to Apply
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="container-max mx-auto px-4 py-8 text-xs text-slate-400">© Nexa Bank — Next-step finance.</footer>
+
+  <script src="./UI.nomodule.js"></script>
+  <script>
+    if(window.wireMobileNav) wireMobileNav('mobileMenuBtn','mobileMenu');
+    if(window.markActive) markActive('products');
+
+    // CIBIL Score Checker
+    const cibilModal = document.getElementById('cibilModal');
+    const closeCibilModal = document.getElementById('closeCibilModal');
+    const cibilForm = document.getElementById('cibilForm');
+    const cibilResult = document.getElementById('cibilResult');
+    const cibilCheckBtns = document.querySelectorAll('.cibil-check-btn');
+
+    cibilCheckBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        cibilModal.classList.remove('hidden');
+        cibilResult.classList.add('hidden');
+        cibilForm.reset();
+      });
+    });
+
+    closeCibilModal.addEventListener('click', () => {
+      cibilModal.classList.add('hidden');
+    });
+
+    cibilModal.addEventListener('click', (e) => {
+      if (e.target === cibilModal) cibilModal.classList.add('hidden');
+    });
+
+    cibilForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const mobile = document.getElementById('mobileInput').value;
+      const pan = document.getElementById('panInput').value;
+
+      if (mobile.length !== 10 || !pan.length) {
+        alert('Please enter valid mobile and PAN');
+        return;
+      }
+
+      // Generate random CIBIL score (500-900)
+      const score = Math.floor(Math.random() * (900 - 500 + 1)) + 500;
+      let status = '';
+      let icon = '📊';
+
+      if (score >= 750) {
+        status = '✅ Excellent! You are highly eligible for all loan products.';
+        icon = '✅';
+      } else if (score >= 700) {
+        status = '👍 Good! You are eligible for most loan products.';
+        icon = '👍';
+      } else if (score >= 650) {
+        status = '⚠️ Fair! You may be eligible with higher interest rates.';
+        icon = '⚠️';
+      } else {
+        status = '❌ Poor! Please improve your credit score before applying.';
+        icon = '❌';
+      }
+
+      document.getElementById('scoreValue').textContent = score;
+      document.getElementById('scoreIcon').textContent = icon;
+      document.getElementById('eligibilityStatus').textContent = status;
+      cibilResult.classList.remove('hidden');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,425 @@
+/* Nexa Bank – custom layer on top of Tailwind */
+* { transition: 0.3s ease; }
+
+body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+
+/* Pretty page background with animation */
+/* Layered, animated background with slow parallax blobs */
+:root{ --bg-1: #071021; --bg-2: #0b1220; --accent-1: #7c3aed; --accent-2:#6d28d9 }
+body{
+  background-color: var(--bg-1);
+  background-image:
+    radial-gradient(800px 600px at 10% 20%, rgba(124,58,237,0.08), transparent 20%),
+    radial-gradient(600px 500px at 85% 80%, rgba(59,130,246,0.04), transparent 18%),
+    linear-gradient(180deg, rgba(7,16,33,0.7), rgba(11,18,32,0.9));
+  background-attachment: fixed;
+  background-size: 140% 140%, 160% 160%, 100% 100%;
+  animation: bgDrift 18s ease-in-out infinite;
+  position: relative;
+  overflow-x: hidden;
+}
+
+@keyframes bgDrift{
+  0%{
+    background-position: 0% 10%, 100% 90%, 0% 0%;
+  }
+  50%{
+    background-position: 20% 30%, 80% 70%, 0% 0%;
+  }
+  100%{
+    background-position: 0% 10%, 100% 90%, 0% 0%;
+  }
+}
+
+/* Subtle moving overlay using pseudo elements for soft shapes */
+body::before, body::after{
+  content: '';
+  position: fixed;
+  left: -10%;
+  top: -10%;
+  width: 40vmax;
+  height: 40vmax;
+  pointer-events: none;
+  filter: blur(80px);
+  opacity: 0.35;
+  transform-origin: center;
+  z-index: 0;
+}
+body::before{
+  background: radial-gradient(circle at 30% 30%, rgba(124,58,237,0.22), transparent 30%);
+  animation: blobSlowA 20s linear infinite;
+}
+body::after{
+  right: -10%;
+  left: auto;
+  top: 40%;
+  background: radial-gradient(circle at 70% 70%, rgba(99,102,241,0.12), transparent 25%);
+  animation: blobSlowB 26s linear infinite reverse;
+}
+
+@keyframes blobSlowA{
+  0%{ transform: translate3d(0,0,0) scale(1); }
+  50%{ transform: translate3d(6vw,-4vh,0) scale(1.06); }
+  100%{ transform: translate3d(0,0,0) scale(1); }
+}
+
+@keyframes blobSlowB{
+  0%{ transform: translate3d(0,0,0) scale(1); }
+  50%{ transform: translate3d(-8vw,6vh,0) scale(1.04) rotate(6deg); }
+  100%{ transform: translate3d(0,0,0) scale(1); }
+}
+
+.container-max { max-width: 1120px; }
+
+.glass {
+  background: rgba(17,24,39,0.68);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.shadow-soft { box-shadow: 0 12px 28px rgba(0,0,0,0.35); }
+
+.nav-blur {
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background: linear-gradient(180deg, rgba(11,18,32,0.6), rgba(11,18,32,0.35));
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 6px 20px rgba(2,6,23,0.5);
+}
+
+/* Smooth button animations */
+button, .btn { 
+  transform: translateY(0);
+  position: relative;
+  overflow: hidden;
+}
+
+button:hover, .btn:hover { 
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+}
+
+button:active, .btn:active {
+  transform: translateY(0);
+}
+
+/* Gradient text utility with animation */
+.text-gradient {
+  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 50%, #a78bfa 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Form inputs with better styling */
+input, select, textarea { 
+  transition: 0.3s ease;
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+input:focus, select:focus, textarea:focus { 
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2), inset 0 0 0 1px #7c3aed;
+  background: rgba(30, 41, 59, 0.8);
+  border-color: #7c3aed;
+}
+
+/* Card animations */
+.card-hover {
+  transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.2, 1), box-shadow 0.45s ease, filter 0.45s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-10px) rotate(-0.6deg) scale(1.01);
+  box-shadow: 0 24px 48px rgba(124,58,237,0.18), 0 6px 18px rgba(2,6,23,0.6);
+  filter: saturate(1.02) contrast(1.02);
+}
+
+/* Stagger animation for lists */
+.animate-stagger > * {
+  opacity: 0;
+  animation: slideInUp 0.6s ease forwards;
+}
+
+.animate-stagger > *:nth-child(1) { animation-delay: 0.1s; }
+.animate-stagger > *:nth-child(2) { animation-delay: 0.2s; }
+.animate-stagger > *:nth-child(3) { animation-delay: 0.3s; }
+.animate-stagger > *:nth-child(4) { animation-delay: 0.4s; }
+.animate-stagger > *:nth-child(5) { animation-delay: 0.5s; }
+.animate-stagger > *:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease;
+}
+
+/* Active nav link */
+.active-link { 
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 6px 10px;
+  border-left: 3px solid #7c3aed;
+}
+
+/* Focus visible for keyboard users */
+a, button { outline: none; }
+a:focus-visible, button:focus-visible, input:focus-visible {
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.3) !important;
+  border-radius: 10px;
+}
+
+/* Skeleton shimmer */
+.skeleton { 
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg, #1f2937 0%, #374151 50%, #1f2937 100%);
+  background-size: 200% 100%;
+  border-radius: 14px;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer { 
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Gradient border cards */
+.card-gradient { 
+  position: relative;
+  border-radius: 18px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(124,58,237,.35), rgba(99,102,241,.1));
+}
+
+.card-inner { 
+  border-radius: 16px;
+  background: rgba(17,24,39,.7);
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Scale in animation */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.5s ease;
+}
+
+/* Smooth page transitions */
+.page-transition {
+  animation: fadeIn 0.6s ease;
+}
+
+/* Mobile spacing */
+@media (max-width: 640px) {
+  .container-max { padding-left: 1rem; padding-right: 1rem; }
+  * { transition: 0.2s ease; }
+}
+
+/* Responsive text sizes */
+@media (max-width: 768px) {
+  h1 { font-size: 2rem !important; }
+  h2 { font-size: 1.5rem !important; }
+}
+
+/* Site logo sizing - comfortable, responsive */
+.site-logo {
+  height: 28px; /* comfortable default */
+  width: auto;
+  display: inline-block;
+}
+
+@media (min-width: 768px) {
+  .site-logo { height: 32px; }
+
+  /* subtle logo hover */
+  .site-logo:hover { transform: scale(1.04) translateY(-1px); filter: drop-shadow(0 6px 18px rgba(124,58,237,0.12)); }
+}
+
+/* Hero decorative blob */
+.hero-deco {
+  position: absolute;
+  right: -3.5rem;
+  top: -2rem;
+  width: 12rem;
+  height: 12rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 30% 30%, rgba(124,58,237,0.18), rgba(99,102,241,0.06) 60%);
+  filter: blur(24px);
+  transform: translateZ(0);
+  animation: blob 9s ease-in-out infinite, blobRotate 28s linear infinite;
+  z-index: 0;
+}
+
+@keyframes blob {
+  0% { transform: translateY(0) scale(1); }
+  33% { transform: translateY(-12px) scale(1.06); }
+  66% { transform: translateY(8px) scale(0.98); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes blobRotate{
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Decorative floating shapes (if you want to add markup) */
+.floating-shape{
+  position: absolute;
+  width: 68px; height: 68px; border-radius: 999px;
+  background: linear-gradient(135deg, rgba(124,58,237,0.18), rgba(99,102,241,0.08));
+  filter: blur(18px);
+  pointer-events: none;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* CTA animation and shimmer */
+.cta-animate { position: relative; z-index: 10; overflow: hidden; }
+.cta-animate::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.12), rgba(255,255,255,0.06));
+  transform: translateX(-100%);
+  transition: transform 0.9s ease;
+}
+.cta-animate:hover::after { transform: translateX(100%); }
+
+/* subtle pulse for first load */
+.pulse-cta { animation: pulse 2.8s ease-in-out 1; }
+
+/* small sparkle to the right of CTA on hover */
+.cta-animate .sparkle { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); opacity: 0; }
+.cta-animate:hover .sparkle { opacity: 1; transform: translateY(-50%) translateX(6px); transition: all 0.45s ease; }
+
+/* reduce global transition for heavy elements to feel snappier */
+* { transition: 0.22s cubic-bezier(.2,.9,.2,1); }
+
+/* Password toggle button styling */
+.pw-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.02);
+  color: rgba(255,255,255,0.9);
+  transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+}
+.pw-toggle:hover { /* subtle bg only, avoid layout shifts */ background: rgba(255,255,255,0.04); }
+.pw-toggle[aria-pressed="true"] { box-shadow: 0 6px 16px rgba(124,58,237,0.14); }
+
+/* Password strength meter */
+.strength-wrap { margin-top: 0.5rem; }
+.strength-track { height: 8px; background: rgba(255,255,255,0.06); border-radius: 999px; overflow: hidden; }
+.strength-bar { height: 100%; width: 0%; transition: width 300ms ease, background-color 300ms ease; }
+.strength-text { font-size: 0.8rem; margin-top: 0.35rem; color: rgba(226,228,231,0.8); }
+
+/* Inline validation messages */
+.validation-list { margin-top: 0.6rem; display:flex; flex-direction:column; gap:6px; }
+.validation-list li { list-style: none; font-size: 0.85rem; color: rgba(226,228,231,0.7); display:flex; gap:8px; align-items:center; }
+.validation-list li .dot { width:18px; height:18px; display:inline-flex; align-items:center; justify-content:center; border-radius:6px; font-weight:700; }
+.validation-list li.valid { color: #c7f9e0; }
+.validation-list li.valid .dot { background: rgba(52,211,153,0.12); color: #34d399; }
+.validation-list li.invalid { color: rgba(255,120,120,0.95); }
+.validation-list li.invalid .dot { background: rgba(239,68,68,0.06); color: #ef4444; }
+
+.pw-match { margin-top: 8px; font-size: 0.9rem; display:flex; align-items:center; gap:10px; }
+.pw-match .dot { width:18px; height:18px; display:inline-flex; align-items:center; justify-content:center; border-radius:6px; }
+.pw-match.valid { color: #c7f9e0; }
+.pw-match.invalid { color: rgba(255,120,120,0.95); }
+
+.btn[disabled] { opacity: 0.55; transform: none; pointer-events: none; }
+
+
+/* Success dialog modal */
+.success-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2,6,23,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 60;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 240ms ease;
+}
+.success-dialog-overlay.open { opacity: 1; pointer-events: auto; }
+.success-dialog {
+  background: linear-gradient(180deg, rgba(17,24,39,0.96), rgba(10,14,20,0.97));
+  border-radius: 14px;
+  padding: 28px 26px;
+  min-width: 280px;
+  max-width: 420px;
+  box-shadow: 0 24px 60px rgba(2,6,23,0.6);
+  transform: translateY(12px) scale(0.985);
+  transition: transform 320ms cubic-bezier(.2,.9,.2,1), opacity 220ms ease;
+  opacity: 0;
+}
+.success-dialog-overlay.open .success-dialog { transform: translateY(0) scale(1); opacity: 1; }
+.success-dialog .icon {
+  width: 68px; height: 68px; border-radius: 999px; display:flex;align-items:center;justify-content:center;margin:0 auto 12px auto;
+  background: radial-gradient(circle at 30% 30%, rgba(52,211,153,0.12), rgba(16,185,129,0.06));
+  box-shadow: 0 10px 30px rgba(16,185,129,0.08), inset 0 -6px 18px rgba(16,185,129,0.02);
+}
+.success-dialog .icon svg { width: 36px; height: 36px; color: #34d399; }
+.success-dialog h3 { text-align: center; margin: 6px 0 0 0; font-size: 1.15rem; }
+.success-dialog p { text-align: center; margin-top: 6px; color: rgba(226,228,231,0.8); font-size: 0.95rem; }
+.success-dialog .actions { display:flex; gap:10px; justify-content:center; margin-top:14px; }
+.success-dialog .actions .btn { padding: 8px 14px; border-radius: 10px; }
+
+
+
