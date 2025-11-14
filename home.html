@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nexa — Customer Home</title>
+  <link rel="icon" href="./N.png" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{brand:{DEFAULT:'#7c3aed',dark:'#6d28d9'}}}}}</script>
+</head>
+<body class="min-h-screen text-slate-100">
+  <header class="nav-blur sticky top-0 z-50">
+    <div class="container-max mx-auto px-4 h-14 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center gap-2 hover:opacity-80 transition"><img src="./Nexa Bank.png" alt="Nexa logo" class="site-logo"/></a>
+        <div class="hidden sm:block text-sm text-slate-300">Customer Dashboard</div>
+      </div>
+      <div class="flex items-center gap-4">
+        <div id="notif" class="hidden sm:block text-slate-300">🔔</div>
+        <div id="userBox" class="flex items-center gap-2">
+          <div id="userName" class="text-sm font-semibold">Guest</div>
+          <button id="logoutBtn" class="px-3 py-1 rounded-md bg-slate-800/40">Logout</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container-max mx-auto px-4 py-8">
+    <section class="grid lg:grid-cols-3 gap-6 items-start">
+      <div class="lg:col-span-2">
+        <div class="glass p-6 rounded-2xl border border-white/10 card-gradient card-inner">
+          <div class="flex items-center justify-between">
+            <div>
+              <div id="greeting" class="text-slate-300">Hi, <span id="greetName">Customer</span></div>
+              <h2 class="text-2xl font-bold mt-2">Outstanding: <span id="outstanding" class="text-gradient">₹ 0</span></h2>
+              <div class="mt-3 flex gap-4 items-center">
+                <div class="text-sm text-slate-300">Next EMI: <strong id="nextEmi">₹ 0</strong></div>
+                <div class="text-sm text-slate-300">Due: <strong id="nextDue">—</strong></div>
+              </div>
+            </div>
+            <div class="text-center">
+              <div id="progressWrap" class="w-32 h-32 rounded-full bg-slate-900 flex items-center justify-center">
+                <div id="progressLabel" class="text-sm">0% repaid</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 flex gap-3">
+            <button id="payNow" class="py-2 px-4 rounded-xl bg-gradient-to-r from-brand to-indigo-600 btn">Pay Now</button>
+            <button id="viewSchedule" class="py-2 px-4 rounded-xl bg-slate-800/60 btn">View Schedule</button>
+            <a href="products.html" class="py-2 px-4 rounded-xl bg-slate-700/40 btn">Apply New Loan</a>
+          </div>
+        </div>
+
+        <div class="mt-6 grid md:grid-cols-4 gap-4">
+          <div class="glass p-4 rounded-xl card-hover">Make Payment</div>
+          <div class="glass p-4 rounded-xl card-hover">Transactions</div>
+          <div class="glass p-4 rounded-xl card-hover">Upload Documents</div>
+          <div class="glass p-4 rounded-xl card-hover">Download Statement</div>
+        </div>
+
+        <div class="mt-6 glass p-4 rounded-2xl shadow-soft">
+          <h3 class="font-semibold mb-3">My Loans</h3>
+            <div id="loansList" class="grid gap-3"></div>
+            <div class="mt-6">
+              <h4 class="font-semibold mb-2">Outstanding Overview</h4>
+              <canvas id="amortChart" width="800" height="220"></canvas>
+            </div>
+            <div class="mt-6">
+              <h4 class="font-semibold mb-2">Recent Transactions</h4>
+              <div class="overflow-x-auto bg-slate-900 p-2 rounded">
+                <table id="txTable" class="w-full text-sm table-auto">
+                  <thead class="text-slate-400 text-xs"><tr><th class="px-2 py-1 text-left">Date</th><th class="px-2 py-1 text-left">Loan</th><th class="px-2 py-1 text-right">Amount</th><th class="px-2 py-1">Method</th></tr></thead>
+                  <tbody class="text-slate-200" id="txBody"><tr><td class="p-2">Loading…</td></tr></tbody>
+                </table>
+              </div>
+            </div>
+            <div class="mt-6">
+              <h4 class="font-semibold mb-2">Documents</h4>
+              <form id="docForm" class="flex items-center gap-2" enctype="multipart/form-data">
+                <label for="docFile" class="sr-only">Upload document</label>
+                <input id="docFile" type="file" aria-label="Upload document" class="text-sm text-slate-300" />
+                <input id="docNote" type="text" placeholder="Note (optional)" class="px-3 py-1 rounded bg-slate-800/50 text-sm" />
+                <button id="uploadDoc" type="button" class="py-1 px-3 rounded bg-brand text-black">Upload</button>
+              </form>
+              <div id="docList" class="mt-3 text-sm text-slate-300">No documents uploaded</div>
+            </div>
+        </div>
+      </div>
+
+      <aside class="space-y-4">
+        <div class="glass p-4 rounded-xl">
+          <h4 class="font-semibold">Alerts</h4>
+          <div id="alerts" class="mt-3 text-sm text-slate-300">No alerts</div>
+        </div>
+
+        <div class="glass p-4 rounded-xl">
+          <h4 class="font-semibold">Recent Transactions</h4>
+          <div id="recentTx" class="mt-3 text-sm text-slate-300">No transactions</div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="container-max mx-auto px-4 py-6 text-xs text-slate-400">© Nexa Bank</footer>
+
+  <script src="./UI.nomodule.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    async function initDashboard(){
+      try{
+        const meRes = await window.api.getMe();
+        if(meRes && meRes.user){ document.getElementById('greetName').textContent = meRes.user.first_name || meRes.user.email; document.getElementById('userName').textContent = meRes.user.first_name || meRes.user.email; }
+      }catch(e){ console.warn('me fetch failed', e); }
+
+      // get dashboard aggregated info (prefer server-side endpoint)
+      let dash = null;
+      try{ dash = await window.api.getCustomerDashboardServer(); }catch(e){ dash = await window.api.getCustomerDashboard().catch(()=> null); }
+      if(dash && dash.ok){
+        document.getElementById('outstanding').textContent = '₹ ' + Number(dash.data.outstanding_total).toLocaleString();
+        document.getElementById('nextEmi').textContent = '₹ ' + Number(dash.data.next_emi_amount).toLocaleString();
+        document.getElementById('nextDue').textContent = '—';
+        document.getElementById('progressLabel').textContent = (dash.data.active_loans_count || 0) + ' loans';
+
+        const loansList = document.getElementById('loansList'); loansList.innerHTML = '';
+        (dash.data.loans || []).forEach(l=>{
+          const el = document.createElement('div'); el.className = 'glass p-3 rounded-xl';
+          el.innerHTML = `<div class='flex items-center justify-between'><div><div class='font-semibold'>${l.id.slice(0,8)} — ${l.status}</div><div class='text-sm text-slate-300'>Original: ₹ ${Number(l.original_amount).toLocaleString()} • Outstanding: ₹ ${Number(l.outstanding_amount).toLocaleString()}</div></div><div class='text-right'><div class='text-sm'>${l.monthly_emi?('EMI: ₹ '+Number(l.monthly_emi).toLocaleString()):''}</div><a href='loan-details.html?loan=${l.id}' class='text-brand text-sm'>View</a></div></div>`;
+          loansList.appendChild(el);
+        });
+        // Render simple outstanding chart per loan
+        try{
+          const ctx = document.getElementById('amortChart');
+          if(ctx && typeof Chart !== 'undefined'){
+            const labels = (dash.data.loans || []).map(l=> l.id.slice(0,8));
+            const data = (dash.data.loans || []).map(l=> Number(l.outstanding_amount || 0));
+            new Chart(ctx.getContext('2d'), {
+              type: 'bar',
+              data: { labels, datasets: [{ label: 'Outstanding (₹)', data, backgroundColor: 'rgba(124,58,237,0.6)' }] },
+              options: { responsive:true, maintainAspectRatio:false, scales:{ y:{ beginAtZero:true } } }
+            });
+          }
+        }catch(e){ console.warn('chart failed', e); }
+
+        // Load recent transactions (for first few loans)
+        try{
+          const loans = dash.data.loans || [];
+          const txBody = document.getElementById('txBody'); txBody.innerHTML = '';
+          const toFetch = loans.slice(0,5);
+          const paymentsList = [];
+          await Promise.all(toFetch.map(async (ln) => {
+            try{ const p = await window.api.getLoanPayments(ln.id); if(p && p.payments) paymentsList.push(...p.payments); }catch(e){}
+          }));
+          paymentsList.sort((a,b)=> new Date(b.payment_date) - new Date(a.payment_date));
+          const rows = paymentsList.slice(0,20).map(t=> `<tr><td class='p-2'>${new Date(t.payment_date).toLocaleString()}</td><td class='p-2'>${(t.loan_id||'').slice(0,8)}</td><td class='p-2 text-right'>₹ ${Number(t.amount).toLocaleString()}</td><td class='p-2'>${t.method||t.provider_ref||''}</td></tr>`).join('');
+          txBody.innerHTML = rows || '<tr><td class="p-2 text-slate-400">No transactions</td></tr>';
+        }catch(e){ console.warn('tx load failed', e); }
+
+        // Document upload handling
+        try{
+          const uploadBtn = document.getElementById('uploadDoc');
+          uploadBtn.addEventListener('click', async ()=>{
+            const fileInput = document.getElementById('docFile');
+            if(!fileInput || !fileInput.files || !fileInput.files.length) return showToast('Select a file to upload');
+            const f = fileInput.files[0];
+            const fd = new FormData(); fd.append('file', f); fd.append('note', document.getElementById('docNote').value || '');
+            try{
+              // use shared api helper
+              if(window.api && window.api.uploadDocument){
+                await window.api.uploadDocument(fd);
+              } else {
+                const res = await fetch('/api/documents', { method:'POST', body: fd, credentials:'include' });
+                if(!res.ok) throw new Error('Upload failed');
+              }
+              showToast('Uploaded successfully');
+              // refresh list if endpoint exists
+            }catch(err){ showToast(err.message || 'Upload failed'); }
+          });
+        }catch(e){ console.warn('doc wiring failed', e); }
+      } else {
+        document.getElementById('loansList').innerHTML = '<div class="text-sm text-slate-400">No loans found</div>';
+      }
+
+      document.getElementById('logoutBtn').addEventListener('click', async ()=>{ await window.api.logout().catch(()=>{}); location.href = 'login.html'; });
+
+      document.getElementById('payNow').addEventListener('click', ()=>{ showToast('Payment flow not integrated in demo'); });
+    }
+
+    document.addEventListener('DOMContentLoaded', initDashboard);
+  </script>
+</body>
+</html>

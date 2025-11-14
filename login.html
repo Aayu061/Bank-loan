@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+  <title>Nexa Bank — Customer Login</title>
+  <!-- shared head -->
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Nexa Bank — Fast & Easy Loans. Low Interest • No Hidden Fees • 100% Secure." />
+  <link rel="icon" href="./N.png" />
+  <meta property="og:title" content="Nexa Bank — Next-step finance" />
+  <meta property="og:description" content="Get approved in minutes with Nexa Bank’s fast & secure loans." />
+  <meta property="og:image" content="img/og-card.png" />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#7c3aed" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{brand:{DEFAULT:'#7c3aed',dark:'#6d28d9'},slatebg:'#0b1220'}}}}</script>
+</head>
+<body class="min-h-screen text-slate-100">
+
+  <!-- Navbar w/ mobile -->
+  <header class="nav-blur sticky top-0 z-50">
+    <div class="container-max mx-auto px-4 h-14 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 hover:opacity-80 transition">
+        <img src="./Nexa Bank.png" alt="Nexa Bank Logo" class="site-logo object-cover rounded" />
+      </a>
+      <nav class="hidden sm:flex items-center gap-6 text-sm" aria-label="Main">
+        <a class="px-4 py-2 rounded-full bg-brand hover:bg-brand-dark font-semibold transition" href="admin-login.html">Office Login</a>
+      </nav>
+      <button id="mobileMenuBtn" class="sm:hidden text-2xl" aria-label="Open menu">☰</button>
+    </div>
+    <nav id="mobileMenu" class="hidden sm:hidden border-t border-white/10 bg-slate-900/90" aria-label="Mobile">
+      <div class="container-max mx-auto px-4 py-3 grid gap-2 text-sm">
+        <a class="nav-link hover:text-brand transition block py-2" data-page="products" href="products.html">Loan Products</a>
+        <a class="nav-link hover:text-brand transition block py-2" data-page="calculator" href="calculator.html">EMI Calculator</a>
+        <a class="nav-link hover:text-brand transition block py-2" data-page="faq" href="faq.html">FAQ</a>
+        <a class="px-3 py-2.5 rounded-lg bg-brand hover:bg-brand-dark font-semibold text-center transition" href="admin-login.html">Office Login</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Toast -->
+  <div id="toast" class="fixed top-4 right-4 z-50 hidden">
+    <div class="rounded-xl bg-slate-900/95 text-slate-100 px-4 py-3 shadow-soft border border-white/10">
+      <span id="toastMsg">Message</span>
+    </div>
+  </div>
+
+  <!-- Hero + Card -->
+  <main class="container-max mx-auto px-4 py-10">
+    <div class="mb-8 flex items-center gap-3">
+      <a href="index.html" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-slate-800/50 hover:bg-slate-700/50 border border-white/10 hover:border-brand/50 transition font-semibold">
+        ← Back
+      </a>
+    </div>
+    <div class="grid lg:grid-cols-2 gap-8 items-center">
+      <section>
+      <span class="inline-flex items-center gap-2 text-xs font-medium bg-white/10 px-3 py-1 rounded-full">
+        <span class="h-2 w-2 rounded-full bg-emerald-400"></span> Trusted by 10,000+ happy customers
+      </span>
+      <h1 class="mt-4 text-4xl sm:text-5xl font-extrabold leading-tight">
+        Fast &amp; Easy Loans — <span class="text-gradient">Get Approved in Minutes!</span>
+      </h1>
+      <p class="mt-4 text-slate-300">Low Interest • No Hidden Fees • 100% Secure</p>
+    </section>
+
+    <section class="glass rounded-2xl p-6 border border-white/10 shadow-soft">
+      <h2 class="text-lg font-semibold bg-gradient-to-r from-brand to-indigo-600 px-4 py-3 rounded-xl mb-4">Loan Customer Login</h2>
+      <form class="space-y-4" action="#" method="post">
+        <label class="block">
+          <span class="text-sm">Email</span>
+          <input id="emailInput" type="email" required autocomplete="email" placeholder="you@example.com"
+                 class="mt-1 w-full rounded-lg bg-slate-800 border border-white/10 px-3 py-2 outline-none focus:ring-2 focus:ring-brand" />
+          <small class="text-xs text-slate-400">Use your registered email address.</small>
+        </label>
+
+        <label class="block">
+          <span class="text-sm">Password</span>
+       <div class="relative">
+       <input id="passwordInput" type="password" required autocomplete="current-password" placeholder="••••••••"
+         class="mt-1 w-full rounded-lg bg-slate-800 border border-white/10 px-3 py-2 pr-12 outline-none focus:ring-2 focus:ring-brand" />
+       <button type="button" id="togglePassword"
+          class="absolute inset-y-0 right-2 flex items-center justify-center w-9 h-9 bg-slate-800/40 rounded-md text-slate-300 hover:bg-slate-700/50 focus:outline-none focus:ring-2 focus:ring-brand"
+          aria-label="Show password" aria-pressed="false"></button>
+     </div>
+          <small class="text-xs text-rose-400 hidden" id="formError">Invalid credentials</small>
+        </label>
+
+  <button class="w-full py-2.5 rounded-xl bg-gradient-to-r from-brand to-indigo-600 font-semibold" type="button">Login</button>
+  <p class="text-center text-sm text-slate-400 mt-2">Don't have an account? <a href="register.html" class="text-brand font-semibold hover:underline">Register here</a></p>
+        <p class="text-xs text-slate-400 text-center">By continuing, you agree to Nexa Bank’s Terms &amp; Privacy.</p>
+        </form>
+      </section>
+    </div>
+  </main>  <!-- Info strip -->
+  <section class="container-max mx-auto px-4 mt-2 grid sm:grid-cols-3 gap-4 text-center text-sm text-slate-300">
+    <div class="p-4 rounded-xl bg-slate-800/50">✅ Secure Banking
+      <p class="text-xs text-slate-400 mt-1">256-bit encryption & strict privacy.</p></div>
+    <div class="p-4 rounded-xl bg-slate-800/50">⚡ Instant Approval
+      <p class="text-xs text-slate-400 mt-1">Screening decision in minutes.</p></div>
+    <div class="p-4 rounded-xl bg-slate-800/50">💬 24/7 Support
+      <p class="text-xs text-slate-400 mt-1">We're always here to help.</p></div>
+  </section>
+
+  <footer class="container-max mx-auto px-4 py-8 text-xs text-slate-400">© Nexa Bank — Next-step finance.</footer>
+
+  <script src="./UI.nomodule.js"></script>
+  <!-- Success dialog markup -->
+  <div id="successDialogOverlay" class="success-dialog-overlay hidden" aria-hidden="true">
+    <div class="success-dialog">
+      <div class="icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" stroke="#34d399"/></svg>
+      </div>
+      <h3 class="success-title">Success</h3>
+      <p class="success-sub">You're logged in.</p>
+      <div class="actions">
+        <button class="btn bg-brand text-white" onclick="document.getElementById('successDialogOverlay').classList.remove('open')">Continue</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    if(window.wireMobileNav) wireMobileNav('mobileMenuBtn','mobileMenu');
+    if(window.wirePasswordToggle) wirePasswordToggle('passwordInput','togglePassword');
+    // Wire login button to backend
+    (function(){
+      const btn = document.querySelector('form button[type="button"]');
+      const emailInput = document.getElementById('emailInput');
+      const passInput = document.getElementById('passwordInput');
+      const formError = document.getElementById('formError');
+      if(!btn) return;
+      btn.addEventListener('click', async ()=>{
+        formError.classList.add('hidden');
+        const email = emailInput.value.trim();
+        const password = passInput.value;
+        const name = (document.getElementById('customerName') && document.getElementById('customerName').value.trim()) || undefined;
+        const mobile = (document.getElementById('customerMobile') && document.getElementById('customerMobile').value.trim()) || undefined;
+        if(!email || !password){ showToast('Please fill email and password'); return; }
+        try{
+          await window.api.login({ email, password, name, phone: mobile });
+          // show animated success dialog then redirect
+          if(window.showSuccessDialog) showSuccessDialog('Login successful', 'Welcome back', 'products.html', 1400);
+          else { showToast('Login successful',1500); setTimeout(()=> location.href = 'products.html', 900); }
+        }catch(err){
+          console.warn('login failed', err);
+          formError.textContent = err.message || 'Login failed';
+          formError.classList.remove('hidden');
+          showToast(err.message || 'Login failed', 2500);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
+
