@@ -51,13 +51,18 @@ app.use(cors({
       return cb(null, true);
     }
     if (origin === null) {
-      if (ALLOW_NULL_ORIGIN) return cb(null, true);
-      return cb(new Error('CORS: Null origin (file://) not allowed'));
+      return cb(null, true);
     }
-
+    
     const allowed = FRONTEND.split(',').map(s => s.trim()).filter(Boolean);
+    
+    // Always allow GitHub Pages deployment
+    allowed.push('https://aayu061.github.io');
+    allowed.push('https://aayu061.github.io/Bank-loan');
+    
     if (allowed.includes(origin)) return cb(null, true);
     return cb(new Error('Not allowed by CORS'));
+
   },
   credentials: true,
 }));
@@ -111,3 +116,4 @@ if (require.main === module) {
 }
 
 module.exports = app;
+
