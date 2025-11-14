@@ -44,11 +44,17 @@ app.use(cookieParser());
 
 app.use(cors({
   origin: (origin, cb) => {
-    // origin == undefined for same-site or some non-browser tools; origin == null for file:// contexts
-    if (!origin) {
-      if (ALLOW_NULL_ORIGIN) return cb(null, true);
-      return cb(new Error('CORS: Missing Origin'));
+    // origin === undefined for same-site navigations or some non-browser tools (no Origin header)
+    // origin === null for file:// contexts
+    if (typeof origin === 'undefined') {
+      // allow same-site browser navigations and tools that don't send Origin
+      return cb(null, true);
     }
+    if (origin === null) {
+      if (ALLOW_NULL_ORIGIN) return cb(null, true);
+      return cb(new Error('CORS: Null origin (file://) not allowed'));
+    }
+
     const allowed = FRONTEND.split(',').map(s => s.trim()).filter(Boolean);
     if (allowed.includes(origin)) return cb(null, true);
     return cb(new Error('Not allowed by CORS'));
