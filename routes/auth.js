@@ -32,9 +32,11 @@ router.post('/register', async (req, res, next) => {
     const token = createToken({ userId: user.id, role: user.role });
 
     const secure = process.env.NODE_ENV === 'production';
-    // Allow configuring SameSite via env; default to 'lax'. Use 'none' only with secure HTTPS.
-    const sameSiteEnv = (process.env.COOKIE_SAMESITE || 'lax').toString().toLowerCase();
-    const sameSite = ['lax', 'strict', 'none'].includes(sameSiteEnv) ? sameSiteEnv : 'lax';
+    // Default SameSite to 'none' in production (works with secure=true), otherwise 'lax' for local dev.
+    // Allow overriding via COOKIE_SAMESITE env if needed.
+    const defaultSameSite = secure ? 'none' : 'lax';
+    const sameSiteEnv = (process.env.COOKIE_SAMESITE || defaultSameSite).toString().toLowerCase();
+    const sameSite = ['lax', 'strict', 'none'].includes(sameSiteEnv) ? sameSiteEnv : defaultSameSite;
     if (sameSite === 'none' && !secure) console.warn('COOKIE_SAMESITE=None set while NODE_ENV!=production: browsers may reject the cookie without Secure/HTTPS');
     res.cookie(COOKIE_NAME, token, { httpOnly: true, sameSite: sameSite, secure, maxAge: 7 * 24 * 3600 * 1000 });
 
@@ -57,11 +59,12 @@ router.post('/login', async (req, res, next) => {
 
     const token = createToken({ userId: user.id, role: user.role });
     const secure = process.env.NODE_ENV === 'production';
-    const sameSiteEnv2 = (process.env.COOKIE_SAMESITE || 'lax').toString().toLowerCase();
-    const sameSite2 = ['lax', 'strict', 'none'].includes(sameSiteEnv2) ? sameSiteEnv2 : 'lax';
+    const defaultSameSite2 = secure ? 'none' : 'lax';
+    const sameSiteEnv2 = (process.env.COOKIE_SAMESITE || defaultSameSite2).toString().toLowerCase();
+    const sameSite2 = ['lax', 'strict', 'none'].includes(sameSiteEnv2) ? sameSiteEnv2 : defaultSameSite2;
     if (sameSite2 === 'none' && !secure) console.warn('COOKIE_SAMESITE=None set while NODE_ENV!=production: browsers may reject the cookie without Secure/HTTPS');
     res.cookie(COOKIE_NAME, token, { httpOnly: true, sameSite: sameSite2, secure, maxAge: 7 * 24 * 3600 * 1000 });
-
+    
     // update last_login_at
     try { await db.query('UPDATE users SET last_login_at = now() WHERE id = $1', [user.id]); } catch (e) { console.warn('failed to update last_login_at', e); }
 
@@ -72,8 +75,11 @@ router.post('/login', async (req, res, next) => {
 
 // Logout
 router.post('/logout', (req, res) => {
-  res.clearCookie(COOKIE_NAME);
+  const secure = process.env.NODE_ENV === 'production';
+  const sameSite = secure ? 'none' : 'lax';
+  res.clearCookie(COOKIE_NAME, { httpOnly: true, sameSite, secure });
   res.json({ ok: true });
 });
 
 module.exports = router;
+
