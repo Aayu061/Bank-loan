@@ -144,9 +144,16 @@
     const meta = document.querySelector('meta[name="api-base"]');
     if(meta && meta.content) return meta.content.replace(/\/+$/, '');
     if(location.protocol === 'file:') return 'http://localhost:4000';
-    return `${location.protocol}//${location.host}`;
-  }
-  const API_BASE = detectApiBase();
+
+    // 🟩 Minimal fix: if running on GitHub Pages, use Render backend
+    if (location.host.endsWith('github.io')) {
+      return 'https://nexa-bank.onrender.com';
+    }
+
+  // default: same-origin backend (when frontend served by backend)
+  return `${location.protocol}//${location.host}`;
+}
+const API_BASE = detectApiBase();
 
   async function apiRequest(path, opts = {}){
     const url = (path.startsWith('http') ? path : `${API_BASE}${path}`);
@@ -258,3 +265,4 @@
   window.initSession = initSession;
   document.addEventListener('DOMContentLoaded', ()=>{ initSession().catch(()=>{}); });
 })();
+
